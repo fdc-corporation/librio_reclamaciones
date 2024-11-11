@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Vista Tree (lista) de Reclamaciones -->
+    <record id="view_reclamacion_tree" model="ir.ui.view">
+        <field name="name">reclamacion.tree</field>
+        <field name="model">reclamacion</field>
+        <field name="arch" type="xml">
+            <tree string="Reclamaciones">
+                <field name="sequence"/>
+                <field name="name"/>
+                <field name="tipo_documento"/>
+                <field name="numero_documento"/>
+                <field name="telefono"/>
+                <field name="correo"/>
+                <field name="monto_reclamado"/>
+                <field name="tipo_reclamo"/>
+                <field name="tipo_bien"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Vista Formulario de Reclamaciones -->
+    <record id="view_reclamacion_form" model="ir.ui.view">
+        <field name="name">reclamacion.form</field>
+        <field name="model">reclamacion</field>
+        <field name="arch" type="xml">
+            <form string="Reclamaciones">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="sequence" readonly="1"/>
+                            <field name="name"/>
+                            <field name="name_padre"/>
+                            <field name="tipo_documento"/>
+                            <field name="numero_documento"/>
+                            <field name="telefono"/>
+                            <field name="correo"/>
+                            <field name="domicilio"/>
+                        </group>
+                        <group>
+                            <field name="tipo_bien"/>
+                            <field name="monto_reclamado"/>
+                            <field name="tipo_reclamo"/>
+                            <field name="detalle_reclamo"/>
+                            <field name="pedido"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="descripcion"/>
+                        <field name="acciones"/>
+                        <field name="archivo_adjunto" filename="archivo_adjunto_filename"/>
+                    </group>
+                    <group>
+                        <field name="check_1"/>
+                        <field name="check_2"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Acción para abrir la vista tree de Reclamaciones -->
+    <record id="action_reclamacion" model="ir.actions.act_window">
+        <field name="name">Reclamaciones</field>
+        <field name="res_model">reclamacion</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    
+    <menuitem id="menu_reclamacion" name="Reclamaciones"
+              parent="contacts.menu_contacts"
+              action="action_reclamacion"
+              sequence="10"/>
+</odoo>

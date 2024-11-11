@@ -1,0 +1,11 @@
+<odoo>
+    <!-- Secuencia para las reclamaciones -->
+    <record id="seq_reclamacion" model="ir.sequence">
+        <field name="name">Secuencia para Reclamaciones</field>
+        <field name="code">reclamacion.sequence</field>
+        <field name="prefix">REC/</field>
+        <field name="padding">5</field>
+        <field name="number_increment">1</field>
+        <field name="number_next">1</field>
+    </record>
+</odoo>

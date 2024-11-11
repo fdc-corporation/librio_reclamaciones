@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<template id="formulario_reclamacion" name="Formulario de Reclamación">
+		<t t-call="website.layout">
+			<div class="container mt-5">
+				<div class="row justify-content-center">
+					<div class="col-md-8">
+						<div class="card">
+							<div class="card-header">
+								<h1 class="text-left" style="color:#3191c5;">
+									Libro de reclamaciones virtual
+								</h1>
+								<p>
+									Conforme a lo establecido en el Código de Protección y Defensa del Consumidor este establecimiento cuenta con un Libro de Reclamaciones virtual a tu disposición
+								</p>
+								<p>
+									Razón Social:
+									<a href="/" style="color:#3191c5;">
+										fdccorp.com.pe
+									</a>
+									SA,  Número de RUC: 20601356326
+								</p>
+							</div>
+							<div class="card-body">
+								<form action="/enviar_reclamacion" method="post" enctype="multipart/form-data">
+									<input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" />
+									<!-- Nombre y Apellidos -->
+									<div class="form-group mb-3">
+										<label>
+											1. Identificación del consumidor reclamante: Nombre(s) y apellidos *:
+										</label>
+										<input type="text" name="name" class="form-control" required="required" />
+									</div>
+									<div class="form-group mb-3">
+										<label>
+											Nombre de padre, madre o apoderado (en caso seas menor de edad)
+										</label>
+										<input type="text" name="name_padre" class="form-control" />
+									</div>
+									<!-- Tipo de Documento -->
+									<div class="form-group mb-3">
+										<label>
+											Tipo de documento:
+										</label>
+										<br />
+										<div class="form-check form-check-inline">
+											<input type="radio" name="tipo_documento" value="dni" class="form-check-input" required="required" />
+											<label class="form-check-label">
+												DNI
+											</label>
+										</div>
+										<div class="form-check form-check-Ainline">
+											<input type="radio" name="tipo_documento" value="ce" class="form-check-input" required="required" />
+											<label class="form-check-label">
+												CE
+											</label>
+										</div>
+									</div>
+									<!-- Número de Documento -->
+									<div class="form-group mb-3">
+										<label>
+											Número de documento: *
+										</label>
+										<input type="text" name="numero_documento" class="form-control" required="required" />
+									</div>
+									<!-- Número de Teléfono -->
+									<div class="form-group mb-3">
+										<label>
+											Número de teléfono:
+										</label>
+										<input type="text" name="telefono" class="form-control" required="required" />
+									</div>
+									<!-- Correo Electrónico -->
+									<div class="form-group mb-3">
+										<label>
+											Su correo electrónico *
+										</label>
+										<input type="email" name="correo" class="form-control" required="required" />
+									</div>
+									<!-- Domicilio -->
+									<div class="form-group mb-3">
+										<label>
+											Domicilio: *
+										</label>
+										<textarea name="domicilio" class="form-control" placeholder="Escriba su dirección completa en el siguiente orden: Nombre de calle, número, urbanización, distrito, provincia y departamento" required="required">
+										</textarea>
+									</div>
+									<!-- Identificación del Bien Contratado -->
+									<div class="form-group mb-3">
+										<label>
+											2. Identificación del bien contratado *
+										</label>
+										<br />
+										<div class="form-check form-check-inline">
+											<input type="radio" name="tipo_bien" value="producto" class="form-check-input" required="required" />
+											<label class="form-check-label">
+												Producto
+											</label>
+										</div>
+										<div class="form-check form-check-inline">
+											<input type="radio" name="tipo_bien" value="servicio" class="form-check-input" required="required" />
+											<label class="form-check-label">
+												Servicio
+											</label>
+										</div>
+									</div>
+									<!-- Monto Reclamado -->
+									<div class="form-group mb-3">
+										<label>
+											Monto reclamado S/
+										</label>
+										<input type="number" step="0.01" name="monto_reclamado" class="form-control" />
+									</div>
+									<!-- Descripción -->
+									<div class="form-group mb-3">
+										<label>
+											Descripción *
+										</label>
+										<textarea name="descripcion" class="form-control" required="required">
+										</textarea>
+									</div>
+									<!-- Tipo de Reclamo -->
+									<div class="form-group mb-3">
+										<label>
+											3. Detalle de la reclamación y pedido del consumidor, tipo *
+										</label>
+										<br />
+										<div class="form-check form-check-inline">
+											<input type="radio" name="tipo_reclamo" value="reclamo" class="form-check-input" required="required" />
+											<label class="form-check-label">
+												Reclamo: Disconformidad relacionada a los productos o servicios.
+											</label>
+										</div>
+										<div class="form-check form-check-inline">
+											<input type="radio" name="tipo_reclamo" value="queja" class="form-check-input" required="required" />
+											<label class="form-check-label">
+												Queja: Disconformidad no relacionada a los productos o servicios o malestar o descontento respecto a la atención al público.
+											</label>
+										</div>
+									</div>
+									<!-- Detalle del Reclamo o Queja -->
+									<div class="form-group mb-3">
+										<label>
+											Detalle del reclamo o queja
+										</label>
+										<textarea name="detalle_reclamo" class="form-control">
+										</textarea>
+									</div>
+									<!-- Pedido -->
+									<div class="form-group mb-3">
+										<label>
+											Pedido (¿Qué es lo que nos solicitas?):
+										</label>
+										<textarea name="pedido" class="form-control">
+										</textarea>
+									</div>
+									<div class="form-group mb-3">
+										<label>
+											4. Observaciones y acciones adoptadas por el proveedor. Descripción de las acciones adoptadas por el proveedor
+										</label>
+										<textarea name="acciones" class="form-control">
+										</textarea>
+									</div>
+									<!-- Archivos Adjuntos -->
+									<div class="form-group mb-3">
+										<label>
+											Archivos adjuntos:
+										</label>
+										<input type="file" name="archivo_adjunto" class="form-control" />
+									</div>
+									<div class="form-check form-check-inline">
+										<input type="checkbox" name="check_1" class="form-check-input" required="required" />
+										<label class="form-check-label">
+											Declaro ser el titular del servicio y acepto el contenido del presente formulario manifestando bajo declaración jurada la veracidad de los hechos descritos
+										</label>
+									</div>
+									<div class="form-check form-check-inline">
+										<input type="checkbox" name="check_2" class="form-check-input" required="required" />
+										<label class="form-check-label">
+											La formulación del reclamo no impide acudir a otras vías de solución de controversias ni es requisito previo para interponer una denuncia ante el INDECOPI. * El proveedor deberá dar respuesta al reclamo en un plazo no mayor a treinta (30) días calendario, pudiendo ampliar el plazo hasta por treinta (30) días más, previa comunicación al consumido
+											Enlaces
+										</label>
+									</div>
+									<!-- Botón de Enviar -->
+									<div class="form-group mt-3 mb-3">
+										<button type="submit" class="btn btn-primary btn-block">
+											Enviar Reclamación
+										</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<br>
+			</br>
+			<br>
+			</br>
+		</t>
+	</template>
+</odoo>
